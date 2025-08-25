@@ -1,0 +1,108 @@
+/* --- Search + Icons Layout --- */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* even spacing between search + cart */
+}
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: width .25s ease, opacity .2s ease;
+  padding: 8px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.search-input.active {
+  width: 220px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-icon {
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* --- Cart icon styling identical to home --- */
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+.cart-icon #cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Active brand filter highlight */
+#brandFilter li.active {
+  font-weight: bold;
+  color: #fff;
+  background: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* === Product Grid Layout === */
+.products .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 20px;
+  grid-auto-flow: row;    /* fill row by row */
+  grid-auto-columns: 1fr; /* keep columns consistent */
+}
+
+/* === Product Card Styling === */
+.products .card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.products .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Force consistent image sizing */
+.products .card img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain; /* show full shirt image without cutting */
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: #f8f8f8;
+}
+
+/* Title and price styling */
+.products .card h4 {
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
+}
+
+.products .card .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}

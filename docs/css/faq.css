@@ -1,0 +1,125 @@
+/* ===== FAQ Page Styles ===== */
+
+/* Header + Navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #145214;
+}
+
+.logo span {
+  color: black;
+}
+
+/* Centered Nav Links */
+.nav-links {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* centers the nav items */
+  gap: 25px; /* space between links */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  color: #145214;
+}
+
+.nav-links a.active {
+  color: #145214;
+}
+
+/* ===== FAQ Section ===== */
+.faq-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2em;
+  color: #222;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.faq-question {
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  padding-right: 25px;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.faq-question:hover {
+  color: #d62828; /* highlight on hover */
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.faq-question.active::after {
+  content: '-';
+}
+
+.faq-answer {
+  display: none;
+  padding-top: 10px;
+  color: #555;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.faq-answer.show {
+  display: block;
+}
+
+/* Footer styles override (optional) */
+footer {
+  text-align: center;
+  padding: 25px 0;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  color: #555;
+  font-size: 0.9em;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 600px) {
+  .faq-container {
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .faq-question {
+    font-size: 1em;
+  }
+}

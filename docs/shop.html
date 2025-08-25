@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shop premium car-inspired t-shirts from Porsche, Ferrari, McLaren, and Lamborghini. Free shipping on all orders at CarTees." />
+  <meta name="keywords" content="Car Tees, Porsche shirt, Ferrari shirt, McLaren shirt, Lamborghini shirt, motorsport clothing, racing tees" />
+  <meta name="author" content="CarTees" />
+  <title>Shop | CarTees</title>
+
+  <!-- Same global CSS as home so navbar/cart styles apply -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+
+  <script src="js/script.js" defer></script>
+  <script src="js/shop.js" defer></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">Car<span>Tees</span></div>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="shop.html" class="active">Shop All</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <!-- Search + Cart grouped together -->
+    <div class="icons">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search products..." aria-label="Search products" />
+        <a href="#" id="searchToggle" class="search-icon" aria-label="Search Products">🔍</a>
+      </div>
+      <div class="cart-icon" onclick="window.location.href='cart.html'">
+        🛒 <span id="cart-count">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Discover Our Exclusive Collection</h1>
+      <p>Premium car-inspired tees designed for enthusiasts who live and breathe speed.</p>
+      <a href="#productGrid" class="btn-primary">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Main Layout -->
+  <main>
+    <!-- Sidebar -->
+    <aside>
+      <h3>Filter by Brand</h3>
+      <ul id="brandFilter">
+        <li data-brand="all" class="active">All</li>
+        <li data-brand="porsche">Porsche</li>
+        <li data-brand="mclaren">McLaren</li>
+        <li data-brand="ferrari">Ferrari</li>
+        <li data-brand="AMG">AMG</li>
+        <li data-brand="BMW">BMW</li>
+      </ul>
+
+      <div class="featured">
+        <h4>🔥 Featured</h4>
+        <a href="product4.html">
+          <img src="images/SennaBack.png" alt="McLaren Senna Tee Featured" />
+        </a>
+        <p><strong>Senna Limited Edition Tee</strong></p>
+        <p class="price">900 EGP</p>
+        <button class="btn-add" onclick="addToCart('McLaren Senna Tee', 900, 'images/SennaBack.png')">Add to Cart</button>
+      </div>
+    </aside>
+
+    <!-- Products -->
+    <section class="products">
+      <div class="sortbar">
+        <p><strong>Showing All Products</strong></p>
+        <select id="sortSelect" aria-label="Sort Products">
+          <option value="default">Sort by</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+
+      <div class="grid" id="productGrid">
+        <!-- Product 1 -->
+        <div class="card" data-category="porsche" data-brand="porsche" data-price="850">
+          <a href="product1.html">
+            <img src="images/911Back.png" alt="Porsche 911 Tee" />
+          </a>
+          <h4>Porsche 911 Tee</h4>
+          <p class="price">850 EGP</p>
+          <button class="btn-add" onclick="addToCart('Porsche 911 Tee', 850, 'images/911Back.png')">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="card" data-category="ferrari" data-brand="ferrari" data-price="950">
+          <a href="product2.html">
+            <img src="images/SF90Back.png" alt="Ferrari SF90 Tee" />
+          </a>
+          <h4>Ferrari SF90 Tee</h4>
+          <p class="price">950 EGP</p>
+          <button class="btn-add" onclick="addToCart('Ferrari SF90 Tee', 950, 'images/SF90Back.png')">Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="card" data-category="mclaren" data-brand="mclaren" data-price="800">
+          <a href="product3.html">
+            <img src="images/P1Back.png" alt="McLaren P1 Tee" />
+          </a>
+          <h4>McLaren P1 Tee</h4>
+          <p class="price">800 EGP</p>
+          <button class="btn-add" onclick="addToCart('McLaren P1 Tee', 800, 'images/P1Back.png')">Add to Cart</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="card" data-category="mclaren" data-brand="mclaren" data-price="900">
+          <a href="product4.html">
+            <img src="images/SennaBack.png" alt="McLaren Senna Tee" />
+          </a>
+          <h4>McLaren Senna Tee</h4>
+          <p class="price">900 EGP</p>
+          <button class="btn-add" onclick="addToCart('McLaren Senna Tee', 900, 'images/SennaBack.png')">Add to Cart</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="card" data-category="AMG" data-brand="AMG" data-price="850">
+          <a href="product5.html">
+            <img src="images/GtBlackBack.png" alt="AMG GT Black Tee" />
+          </a>
+          <h4>AMG GT Black Tee</h4>
+          <p class="price">850 EGP</p>
+          <button class="btn-add" onclick="addToCart('AMG GT Black Tee', 850, 'images/GtBlackBack.png')">Add to Cart</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="card" data-category="BMW" data-brand="BMW" data-price="850">
+          <a href="product6.html">
+            <img src="images/M4 CompetitionBack.png" alt="M4 Competition Tee" />
+          </a>
+          <h4>M4 Competition Tee</h4>
+          <p class="price">850 EGP</p>
+          <button class="btn-add" onclick="addToCart('M4 Competition Tee', 850, 'images/M4 CompetitionBack.png')">Add to Cart</button>
+        </div>
+      </div> <!-- ✅ Now the grid closes here -->
+    </section>
+  </main>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <h3>Join the CarTees Club</h3>
+    <p>Get exclusive offers, discounts, and early access to new drops.</p>
+    <form id="newsletterForm">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit" class="btn-primary">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shop.html">Shop</a>
+      <a href="terms.html">Terms & Conditions</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.instagram.com/revvocartees/">Instagram</a> |
+      <a href="#">Facebook</a> |
+    </div>
+    <p>&copy; 2025 CarTees. All rights reserved.</p>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="cart-modal" aria-live="polite">
+    <div class="cart-modal-content">
+      <p>✅ Product added to cart!</p>
+      <div class="cart-modal-buttons">
+        <button id="continueShoppingBtn" class="btn-secondary">Continue Shopping</button>
+        <button id="viewCartBtn" class="btn-primary">View Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Search toggle
+    (function () {
+      const searchToggle = document.getElementById("searchToggle");
+      const searchInput = document.getElementById("searchInput");
+      if (searchToggle && searchInput) {
+        searchToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          searchInput.classList.toggle("active");
+          if (searchInput.classList.contains("active")) searchInput.focus();
+        });
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".search-wrapper")) searchInput.classList.remove("active");
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") searchInput.classList.remove("active");
+        });
+      }
+    })();
+
+    // Cart badge fallback
+    (function () {
+      const badge = document.getElementById("cart-count");
+      if (badge) {
+        try {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          badge.textContent = cart.length;
+        } catch (_) {
+          badge.textContent = "0";
+        }
+      }
+    })();
+
+    // Brand filter from URL
+    (function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const brandParam = urlParams.get("brand");
+      if (brandParam) {
+        const brand = brandParam.toLowerCase();
+        const filterItems = document.querySelectorAll("#brandFilter li");
+        const products = document.querySelectorAll("#productGrid .card");
+
+        filterItems.forEach(item => {
+          if (item.dataset.brand === brand) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+
+        products.forEach(card => {
+          if (card.dataset.brand === brand) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

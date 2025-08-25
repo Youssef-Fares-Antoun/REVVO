@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f8f8;
+  color: #222;
+}
+
+/* ===== Header (same as main site) ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #145214;
+}
+
+.logo span { 
+  color: black; 
+}
+
+/* Centered Nav Links */
+.nav-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { 
+  color: #145214; 
+}
+
+.nav-links a.active {
+  color: #145214;
+}
+
+/* Optional icons if needed */
+.icons a { 
+  margin-left: 10px; 
+  font-size: 18px; 
+  text-decoration: none; 
+  color: black;
+}
+
+/* ===== Hero Section ===== */
+.contact-hero {
+  background: url("https://wallpaperaccess.com/full/298478.jpg") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.contact-hero h1 { 
+  font-size: 40px; 
+  margin-bottom: 10px; 
+}
+
+/* ===== Main Container ===== */
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 50px;
+}
+
+.contact-form, 
+.contact-info {
+  flex: 1;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.contact-form h2, 
+.contact-info h2 {
+  margin-bottom: 20px;
+  color: #145214;
+}
+
+.contact-form input, 
+.contact-form textarea, 
+.contact-form button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.contact-form textarea {
+  resize: none;
+  height: 120px;
+}
+
+.contact-form button {
+  background: #145214;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover { 
+  background: #0e3e0e; 
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #000; /* solid black */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .contact-form, 
+  .contact-info {
+    margin-bottom: 20px;
+  }
+
+  .contact-hero h1 {
+    font-size: 28px;
+  }
+}

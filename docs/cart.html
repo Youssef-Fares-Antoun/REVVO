@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart | CarTees</title>
+  <link rel="stylesheet" href="css/cart.css">
+  <style>
+    main { padding: 40px; max-width: 1000px; margin: auto; }
+    h1 { margin-bottom: 20px; }
+    .cart-item { display: flex; align-items: center; border-bottom: 1px solid #ddd; padding: 15px 0; gap: 20px; }
+    .cart-item img { width: 120px; object-fit: contain; }
+    .cart-item-info { flex: 1; }
+    .quantity-controls { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+    .qty-btn { padding: 5px 10px; cursor: pointer; }
+    .remove-btn { padding: 5px 10px; background: #e74c3c; color: #fff; border: none; cursor: pointer; border-radius: 5px; }
+    .remove-btn:hover { background: #c0392b; }
+    .cart-summary { margin-top: 30px; text-align: right; }
+    .cart-actions { margin-top: 15px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+    .cart-actions button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; background: #145214; color: #fff; }
+    .cart-actions button.clear-btn { background: #e74c3c; }
+    .cart-actions button.continue-btn { background: #3498db; }
+    .cart-actions button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo">Car<span>Tees</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop All</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <!-- Cart Content -->
+  <main>
+    <h1>Your Cart</h1>
+    <div id="cart-items"></div>
+
+    <div class="cart-summary">
+      <h2>Total: <span id="cart-total">LE 0.00</span></h2>
+      <div class="cart-actions">
+        <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+        <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
+        <button class="continue-btn" onclick="window.location.href='shop.html'">Continue Shopping</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 CarTees. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("cart-items");
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+        document.getElementById("cart-total").textContent = "LE 0.00";
+        return;
+      }
+
+      container.innerHTML = ""; // Clear previous items
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const sizeText = item.size ? item.size : "Default";
+
+        // ✅ FIX: Normalize image path correctly
+        let imgPath = item.image.replace(/^\/+/, ""); // remove leading slashes
+        if (!imgPath.startsWith("images/")) {
+          imgPath = "images/" + imgPath;
+        }
+
+        const cartItem = document.createElement("div");
+        cartItem.className = "cart-item";
+        cartItem.innerHTML = `
+          <div class="cart-item-image">
+            <img src="${imgPath}" alt="${item.name}" onerror="this.src='images/placeholder.png'">
+          </div>
+          <div class="cart-item-info">
+            <p><strong>${item.name}</strong></p>
+            <p>Size: ${sizeText}</p>
+            <div class="quantity-controls">
+              <button class="qty-btn" onclick="updateQuantity(${index}, -1)">−</button>
+              <span>${item.quantity}</span>
+              <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+            </div>
+            <p>Price: LE ${itemTotal.toFixed(2)}</p>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+        container.appendChild(cartItem);
+      });
+
+      document.getElementById("cart-total").textContent = "LE " + total.toFixed(2);
+    }
+
+    function updateQuantity(index, change) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (!cart[index]) return;
+
+      cart[index].quantity += change;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart();
+    }
+
+    function removeFromCart(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart();
+    }
+
+    function clearCart() {
+      localStorage.removeItem("cart");
+      loadCart();
+    }
+
+    window.onload = loadCart;
+  </script>
+</body>
+</html>

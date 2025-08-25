@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout | CarTees</title>
+  <link rel="stylesheet" href="css/style.css"> <!-- main styles -->
+  <link rel="stylesheet" href="css/checkout.css"> <!-- checkout page styles -->
+  <script src="js/script.js" defer></script>
+  <style>
+    /* Navigation bar styles */
+    .navbar {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+      gap: 40px;
+      font-weight: bold;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+
+    /* Small styling for payment instructions */
+    .instapay-details {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #145214;
+      display: none; /* hidden until InstaPay is chosen */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop All</a>
+    <a href="contact.html">Contact</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+
+  <div class="container">
+    <!-- Checkout Form -->
+    <div class="checkout-form">
+      <h2>Billing Details</h2>
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Shipping Address</label>
+          <textarea id="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="payment">Payment Method</label>
+          <select id="payment" required>
+            <option value="">-- Select --</option>
+            <option value="cod">Cash on Delivery</option>
+            <option value="instapay">InstaPay</option>
+          </select>
+          <div id="instapayInfo" class="instapay-details">
+            💳 Send your payment to InstaPay account:  
+            <strong>cartees@instapay</strong>  
+            and include your Order ID in the transfer note.
+          </div>
+        </div>
+        <button type="submit" class="checkout-btn">Place Order</button>
+      </form>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h2>Your Order</h2>
+      <div id="order-items"></div>
+      <p class="order-total">Total: LE <span id="order-total">0.00</span></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 CarTees. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const orderItems = document.getElementById("order-items");
+      const orderTotal = document.getElementById("order-total");
+      let total = 0;
+
+      if (cart.length === 0) {
+        orderItems.innerHTML = "<p>Your cart is empty.</p>";
+        orderTotal.textContent = "0.00";
+      } else {
+        cart.forEach(item => {
+          let div = document.createElement("div");
+          div.classList.add("order-item");
+          div.innerHTML = `<span>${item.quantity} × ${item.name}</span> <span>LE ${(item.price * item.quantity).toFixed(2)}</span>`;
+          orderItems.appendChild(div);
+          total += item.price * item.quantity;
+        });
+        orderTotal.textContent = total.toFixed(2);
+      }
+
+      // Show InstaPay instructions if selected
+      const paymentSelect = document.getElementById("payment");
+      const instapayInfo = document.getElementById("instapayInfo");
+      paymentSelect.addEventListener("change", () => {
+        if (paymentSelect.value === "instapay") {
+          instapayInfo.style.display = "block";
+        } else {
+          instapayInfo.style.display = "none";
+        }
+      });
+
+      // Handle form submission
+      document.getElementById("checkoutForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const method = paymentSelect.value;
+        if (method === "instapay") {
+          alert("📲 Please complete your InstaPay transfer before we process your order.");
+        } else if (method === "cod") {
+          alert("💵 Your order will be collected Cash on Delivery.");
+        }
+        localStorage.removeItem("cart"); // clear cart
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+
+</body>
+</html>
